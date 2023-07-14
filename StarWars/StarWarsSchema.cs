@@ -1,6 +1,5 @@
 using GraphQL.Instrumentation;
 using GraphQL.Types;
-using Chat;
 
 namespace StarWars;
 

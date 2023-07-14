@@ -5,7 +5,7 @@ using System.Collections.Concurrent;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 
-namespace Chat;
+namespace StarWars;
 
 
 public class MessageSubscription : ObjectGraphType

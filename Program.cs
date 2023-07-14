@@ -1,6 +1,5 @@
 using GraphQL;
 using StarWars;
-using Chat;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,23 +18,24 @@ s.AddGraphQL(x => x
 );
 //s.AddHostedService<TestMessageService>();
 s.AddSingleton<StarWarsData>();
-s.AddSingleton<IChat, Chat.Chat>();
+s.AddSingleton<IChat, Chat>();
 s.AddLogging(builder => builder.AddConsole());
 s.AddHttpContextAccessor();
 
 var app = builder.Build();
-
-app.UseGraphQL<StarWarsSchema>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    app.UseGraphQLPlayground(); // http://{hostnaname}/ui/playground
-    app.UseGraphQLGraphiQL(); // http://{hostnaname}/ui/graphiql
 }
 
 app.UseHttpsRedirection();
 app.UseWebSockets();
+
+app.UseGraphQL<StarWarsSchema>();
+app.UseGraphQLPlayground(); // http://{hostnaname}/ui/playground
+app.UseGraphQLGraphiQL(); // http://{hostnaname}/ui/graphiql
+
 app.Run();
